@@ -1,0 +1,60 @@
+{
+  "name": "@tendersa/sdk",
+  "version": "0.1.0-alpha.0",
+  "description": "Official TypeScript/JavaScript SDK for the Tenders-SA Developer API",
+  "keywords": [
+    "tenders-sa",
+    "south-africa",
+    "procurement",
+    "tenders",
+    "api-client",
+    "sdk"
+  ],
+  "homepage": "https://tenders-sa.org/developers",
+  "bugs": {
+    "url": "https://github.com/Tenders-SA/js/issues"
+  },
+  "license": "MIT",
+  "author": "Tenders-SA (https://tenders-sa.org)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tenders-SA/js.git"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/ tests/",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@11+",
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "eslint": "^10.4.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7"
+  }
+}
