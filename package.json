@@ -1,5 +1,5 @@
 {
-  "name": "@tendersa/sdk",
+  "name": "@tendersa/sdk-js",
   "version": "0.1.0-alpha.0",
   "description": "Official TypeScript/JavaScript SDK for the Tenders-SA Developer API",
   "keywords": [
@@ -48,6 +48,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "packageManager": "npm@11+",
   "devDependencies": {

@@ -26,6 +26,13 @@
 # misc
 .DS_Store
 *.pem
+*.log
+build_error.txt
+ci.log
+dir_nm.txt
+install.log
+write_test.txt
+.npmrc
 
 # debug
 npm-debug.log*
