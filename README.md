@@ -1,4 +1,4 @@
-# @tendersa/sdk
+# @tenders-sa-org/sdk-js
 
 Official TypeScript/JavaScript SDK for the [Tenders-SA Developer API](https://tenders-sa.org/developers) — enriched South African public procurement data.
 
@@ -121,7 +121,7 @@ GET /v1/tenders?fields=tenderId,title,status,closingDate
 ## Installation
 
 ```bash
-npm install @tendersa/sdk
+npm install @tenders-sa-org/sdk-js
 ```
 
 ### Requirements
@@ -134,7 +134,7 @@ npm install @tendersa/sdk
 ## Quick Start
 
 ```typescript
-import { TendersaClient } from '@tendersa/sdk'
+import { TendersaClient } from '@tenders-sa-org/sdk-js'
 
 const client = new TendersaClient({ apiKey: 'tsa_prod_your_key' })
 
@@ -163,7 +163,7 @@ const results = await client.tenders.search({ q: 'road construction' })
 ### Creating a Client
 
 ```typescript
-import { TendersaClient } from '@tendersa/sdk'
+import { TendersaClient } from '@tenders-sa-org/sdk-js'
 
 const client = new TendersaClient({
   apiKey: 'tsa_prod_your_key',
@@ -288,7 +288,7 @@ import {
   ConflictError,
   InternalError,
   ServiceUnavailableError,
-} from '@tendersa/sdk'
+} from '@tenders-sa-org/sdk-js'
 
 try {
   const result = await client.tenders.get('nonexistent')

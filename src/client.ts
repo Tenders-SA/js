@@ -81,7 +81,7 @@ export class TendersaClient {
           method,
           headers: {
             'Authorization': `Bearer ${this.apiKey}`,
-            'User-Agent': `@tendersa/sdk/${VERSION}`,
+            'User-Agent': `@tenders-sa-org/sdk-js/${VERSION}`,
             'Accept': 'application/json',
           },
           signal: controller.signal,

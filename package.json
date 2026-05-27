@@ -1,5 +1,5 @@
 {
-  "name": "@tendersa/sdk-js",
+  "name": "@tenders-sa-org/sdk-js",
   "version": "0.1.0",
   "description": "Official TypeScript/JavaScript SDK for the Tenders-SA Developer API",
   "keywords": [
