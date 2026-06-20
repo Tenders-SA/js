@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { TendersaClient } from '../../src/client.js'
 import { TENDER_LIST_RESPONSE, ERROR_RESPONSES } from '../fixtures/responses.js'
 
@@ -34,11 +34,32 @@ describe('TendersaClient', () => {
     expect(client['baseUrl']).toBe('https://api.tenders-sa.org')
   })
 
+  it('has all 16 resource properties', () => {
+    const client = new TendersaClient({ apiKey })
+    expect(client.tenders).toBeDefined()
+    expect(client.awards).toBeDefined()
+    expect(client.companies).toBeDefined()
+    expect(client.organizations).toBeDefined()
+    expect(client.meta).toBeDefined()
+    expect(client.categories).toBeDefined()
+    expect(client.provinces).toBeDefined()
+    expect(client.directors).toBeDefined()
+    expect(client.seo).toBeDefined()
+    expect(client.industry).toBeDefined()
+    expect(client.services).toBeDefined()
+    expect(client.ocds).toBeDefined()
+    expect(client.intel).toBeDefined()
+    expect(client.forensic).toBeDefined()
+    expect(client.cipc).toBeDefined()
+    expect(client.newsletters).toBeDefined()
+    expect(client.documents).toBeDefined()
+  })
+
   it('parses successful response', async () => {
     const mockFetch = createMockFetch(TENDER_LIST_RESPONSE)
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
-    const response = await client.get('/v1/tenders')
+    const response = await client.get('/v2/tenders')
 
     expect(response.success).toBe(true)
     expect(response.data).toHaveLength(1)
@@ -50,19 +71,19 @@ describe('TendersaClient', () => {
     const mockFetch = createMockFetch(TENDER_LIST_RESPONSE)
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
-    await client.get('/v1/tenders')
+    await client.get('/v2/tenders')
 
     const callUrl = mockFetch.mock.calls[0][0]
     const callHeaders = mockFetch.mock.calls[0][1].headers
     expect(callHeaders['Authorization']).toBe(`Bearer ${apiKey}`)
-    expect(callUrl).toContain('/v1/tenders')
+    expect(callUrl).toContain('/v2/tenders')
   })
 
   it('appends query parameters', async () => {
     const mockFetch = createMockFetch(TENDER_LIST_RESPONSE)
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
-    await client.get('/v1/tenders', { category: 'ict-technology', page: 1, limit: 20 })
+    await client.get('/v2/tenders', { category: 'ict-technology', page: 1, limit: 20 })
 
     const callUrl = mockFetch.mock.calls[0][0]
     expect(callUrl).toContain('category=ict-technology')
@@ -74,7 +95,7 @@ describe('TendersaClient', () => {
     const mockFetch = createMockFetch(TENDER_LIST_RESPONSE)
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
-    await client.get('/v1/tenders', { category: undefined, province: null as unknown as undefined, page: 1 })
+    await client.get('/v2/tenders', { category: undefined, province: null as unknown as undefined, page: 1 })
 
     const callUrl = mockFetch.mock.calls[0][0]
     expect(callUrl).not.toContain('category')
@@ -91,7 +112,7 @@ describe('TendersaClient', () => {
     })
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
-    await client.get('/v1/tenders')
+    await client.get('/v2/tenders')
 
     expect(client.lastRateLimit.limit).toBe(500)
     expect(client.lastRateLimit.remaining).toBe(498)
@@ -103,21 +124,21 @@ describe('TendersaClient', () => {
     const mockFetch = createMockFetch(ERROR_RESPONSES[400], 400)
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
-    await expect(client.get('/v1/tenders', { page: 9999 })).rejects.toThrow('Page exceeds')
+    await expect(client.get('/v2/tenders', { page: 9999 })).rejects.toThrow('Page exceeds')
   })
 
   it('throws AuthError for 401', async () => {
     const mockFetch = createMockFetch(ERROR_RESPONSES[401], 401)
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
-    await expect(client.get('/v1/tenders')).rejects.toThrow('Missing Authorization header')
+    await expect(client.get('/v2/tenders')).rejects.toThrow('Missing Authorization header')
   })
 
   it('throws NotFoundError for 404', async () => {
     const mockFetch = createMockFetch(ERROR_RESPONSES[404], 404)
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
-    await expect(client.get('/v1/tenders/invalid')).rejects.toThrow('Tender not found')
+    await expect(client.get('/v2/tenders/invalid')).rejects.toThrow('Tender not found')
   })
 
   it('throws RateLimitError for 429', async () => {
@@ -125,7 +146,7 @@ describe('TendersaClient', () => {
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
     try {
-      await client.get('/v1/tenders')
+      await client.get('/v2/tenders')
       expect.unreachable()
     } catch (error) {
       const e = error as { name: string; status: number; limit: number; used: number; resetsAt: string; tier: string }
@@ -140,7 +161,7 @@ describe('TendersaClient', () => {
     const mockFetch = createMockFetch(ERROR_RESPONSES[500], 500)
     const client = new TendersaClient({ apiKey, fetch: mockFetch })
 
-    await expect(client.get('/v1/tenders')).rejects.toThrow('Internal server error')
+    await expect(client.get('/v2/tenders')).rejects.toThrow('Internal server error')
   })
 
   it('throws on missing API key', () => {

@@ -28,7 +28,7 @@ export const TENDER_LIST_RESPONSE = {
   meta: {
     requestId: 'req_abc123',
     timestamp: '2026-05-25T10:00:00Z',
-    apiVersion: 'v1',
+    apiVersion: 'v2',
     page: 1,
     pageSize: 20,
     totalCount: 145,
@@ -134,11 +134,14 @@ export const COMPANY_RESPONSE = {
         subcontractors: null,
       },
     ],
+    directors: [
+      { name: 'John Doe', idNumber: '800101****080' },
+    ],
   },
   meta: {
     requestId: 'req_co123',
     timestamp: '2026-05-25T10:00:00Z',
-    apiVersion: 'v1',
+    apiVersion: 'v2',
     awardsTotal: 42,
     awardsPage: 1,
     awardsPageSize: 10,
@@ -150,24 +153,19 @@ export const META_STATUS_RESPONSE = {
   success: true,
   data: {
     healthy: true,
-    version: 'v1',
-    lastSync: {
-      tenders: '2026-05-25T09:45:00Z',
-      awards: '2026-05-25T09:45:00Z',
-      companies: '2026-05-25T09:45:00Z',
-      organizations: '2026-05-25T08:00:00Z',
-      analyses: '2026-05-25T09:45:00Z',
-      estimates: '2026-05-25T09:45:00Z',
-    },
+    version: 'v2',
+    entities: null,
+    cron: null,
+    timestamp: '2026-05-25T10:00:00Z',
   },
-  meta: { requestId: 'req_st123', timestamp: '2026-05-25T10:00:00Z', apiVersion: 'v1' },
+  meta: { requestId: 'req_st123', timestamp: '2026-05-25T10:00:00Z', apiVersion: 'v2' },
 }
 
 export const CATEGORY_RESPONSE = {
   success: true,
   data: [
-    { name: 'Construction & Infrastructure', count: 1245 },
-    { name: 'ICT & Technology', count: 892 },
+    { categorySlug: 'construction', categoryName: 'Construction & Infrastructure', tenderCount: 1245 },
+    { categorySlug: 'ict', categoryName: 'ICT & Technology', tenderCount: 892 },
   ],
-  meta: { requestId: 'req_cat123', timestamp: '2026-05-25T10:00:00Z', apiVersion: 'v1' },
+  meta: { requestId: 'req_cat123', timestamp: '2026-05-25T10:00:00Z', apiVersion: 'v2' },
 }

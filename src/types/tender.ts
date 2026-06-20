@@ -132,5 +132,10 @@ export interface AwardAnalyticsParams {
   to?: string
 }
 
+export interface CountItem {
+  name: string
+  count: number
+}
+
 // Re-export for convenience
 import type { RateLimit } from './common.js'

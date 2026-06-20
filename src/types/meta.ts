@@ -1,14 +1,9 @@
 export interface ApiStatus {
   healthy: boolean
   version: string
-  lastSync: {
-    tenders: string | null
-    awards: string | null
-    companies: string | null
-    organizations: string | null
-    analyses: string | null
-    estimates: string | null
-  }
+  entities: Record<string, unknown> | null
+  cron: Record<string, unknown> | null
+  timestamp: string | null
 }
 
 export interface ProvinceCount {
@@ -17,15 +12,20 @@ export interface ProvinceCount {
 }
 
 export interface CategoryCount {
-  name: string
-  count: number
+  categorySlug: string
+  categoryName: string
+  tenderCount: number
 }
 
 export interface UsageStats {
   daily: number
   monthly: number
-  limit: {
-    daily: number
-    monthly: number
-  }
+  limit: Record<string, number>
+}
+
+export interface IndustryBenchmarkSummary {
+  id: string
+  industryName: string
+  sampleSize: number
+  medianValue: number | null
 }

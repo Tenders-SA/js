@@ -32,6 +32,7 @@ export interface CompanyProfile {
 export interface CompanyProfileResponse {
   profile: CompanyProfile
   awards: Award[]
+  directors: Director[]
 }
 
 export interface CompanySearchResult {
