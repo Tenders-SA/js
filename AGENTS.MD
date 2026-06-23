@@ -40,4 +40,5 @@ npm version patch && npm publish  # manual
 - `@tenders-sa-org/cli` wraps this SDK — update sdk-js first, then bump CLI
 
 ## Published
-- v0.1.0 (current)
+- v0.2.0 (current) — v2 API update: 16 resources, 90+ endpoints, new types (categories, provinces, directors, ocds, intel, forensic, cipc, newsletters, documents, industry, services, seo)
+- v0.1.0 (initial)
